@@ -109,7 +109,7 @@ export default class ContactData extends Component {
                 {formElementsArray.map(formEl => (
                     <Input 
                     key={formEl.id}
-                    elementType = {formEl.config.elementType}
+                    inputtype = {formEl.config.elementType}
                     elementConfig = {formEl.config.elementConfig}
                     value = {formEl.config.value} />
                 ))}
