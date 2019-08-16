@@ -8,11 +8,57 @@ import Input from './../../../components/UI/Input/Input';
 export default class ContactData extends Component {
 
     state = {
-        name: '',
-        email: '',
-        address: {
-            street: '',
-            postCode: ''
+        orderForm: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your Name'
+                },
+                value: ''
+            },
+            street: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Address'
+                },
+                value: ''
+            },
+            zipCode: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Post code'
+                },
+                value: ''
+            },
+            country: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Country'
+                },
+                value: ''
+            },
+            email:{
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'email'
+                },
+                value: ''
+            },
+            deliveryMethod: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                        {value: 'fastest', displayValue: 'Fastest'},
+                        {value: 'cheapest', displayValue: 'Cheapest'},
+                    ]
+                },
+                value: ''
+            },
         }
     }
 
@@ -48,18 +94,31 @@ export default class ContactData extends Component {
     }
 
     render() {
+
+        const formElementsArray = [];
+
+        for(let key in this.state.orderForm){
+            formElementsArray.push({
+                id: key,
+                config: this.state.orderForm[key]
+            });
+        }
+
         let form = (
             <form>
-                    <Input inputtype="input" type="text" name="name" placeholder="Your name" />
-                    <Input inputtype="input" type="email" name="email" placeholder="Your email" />
-                    <Input inputtype="input" type="text" name="street" placeholder="Street" />
-                    <Input inputtype="input" type="text" name="postCode" placeholder="Post code" />
-                    <Button btnType="Success" clicked={this.orderHandler}> ORDER </Button>
+                {formElementsArray.map(formEl => (
+                    <Input 
+                    key={formEl.id}
+                    elementType = {formEl.config.elementType}
+                    elementConfig = {formEl.config.elementConfig}
+                    value = {formEl.config.value} />
+                ))}
+                <Button btnType="Success" clicked={this.orderHandler}> ORDER </Button>
 
-                </form>
+            </form>
         );
-        if(this.state.loading){
-            form =<Spinner/>;
+        if (this.state.loading) {
+            form = <Spinner />;
         }
         return (
             <div className="ContactData">
