@@ -11,7 +11,7 @@ import OrderSummary from './../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from './../../components/UI/Spinner/Spinner';
 import withErrorHandler from './../../hoc/withErrorHandler/withErrorHandler';
 
-class Burgerbuilder extends Component {
+export class Burgerbuilder extends Component {
 
     state = {
         purchasing: false
