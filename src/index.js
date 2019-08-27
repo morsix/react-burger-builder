@@ -24,7 +24,7 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 const app = (
     <Provider store={store}>
-        <BrowserRouter basename='react-burger-builder'>
+        <BrowserRouter>
             <App></App>
         </BrowserRouter>
     </Provider>
